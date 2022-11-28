@@ -4,6 +4,7 @@ from selenium import webdriver
 import sys
 import numpy as np
 from firebase import* 
+import datetime
 driver= webdriver.Chrome()## zapytac
 
 
@@ -90,11 +91,12 @@ def dict_conv(record_info):
             mydict[index]=f"{i}"
             final_dict = dict(zip(ini_list, list(mydict.values())))
         n+=1
+        date=datetime.date.today()
         print(n)   
         print('----------------------------------------------------------')
         print(final_dict)
         
-        database.child('Data').child(f'Item_{n}').set(final_dict)
+        database.child('Data').child(f'Item_{n}_{date}').set(final_dict)
      
 
 
